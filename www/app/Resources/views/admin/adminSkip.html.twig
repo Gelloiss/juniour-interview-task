@@ -1,0 +1,32 @@
+{% extends 'admin/adminTemplate.html.twig' %}
+{% block page %}
+	<p class="positionElement"><b>{{employee.name}}</b></p>
+	<p class="positionElement"><img src="{{ asset('/uploads/files/') }}{{employee.photo}}" /></p>
+	<p class="positionElement">Должность: {{employee.position.name}}</p>
+	<p class="positionElement">Первый рабочий день: {{employee.firstDay  | date('d-m-Y')}}</p>
+	<p class="positionElement">Оплата в час: {{employee.rate}}</p>
+
+	{{ form_start(form) }}
+	{{ form_widget(form) }}
+	<div class="monthly" id="mycalendar"></div>
+	{{ form_end(form) }}
+
+	{% if adding == true %}
+    	<p class="positionElement">Пропуск успешно добавлен!</p>
+	{% endif %}
+
+	<script type="text/javascript" src="{{ asset('js/monthly.js') }}"></script>
+	<script type="text/javascript">
+		$(window).load( function() {
+			$('#mycalendar').monthly({
+				mode: 'picker',
+				target: '.calendar',
+				setWidth: '250px',
+				startHidden: true,
+				showTrigger: '.calendar',
+				stylePast: false,
+				disablePast: false
+			});
+		});
+	</script>
+{% endblock %}

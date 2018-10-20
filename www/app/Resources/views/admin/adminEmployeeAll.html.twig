@@ -1,0 +1,33 @@
+{% extends 'admin/adminTemplate.html.twig' %}
+{% block page %}
+	<table id="table">
+		<thead>
+		  <tr>
+			<th>Имя</th>
+			<th>Фото</th>
+			<th>Должность</th>
+			<th>Первый день</th>
+			<th>Рейт</th>
+			<th>Пропуски</th>
+			<th>Редактировать</th>
+			<th>Зарплата</th>
+		  </tr>
+		</thead>
+		<tbody>
+		{% for row in pagination %}
+			<tr>
+				<td><span class="bt-content">{{row.name}}</span></td>
+				<td><span class="bt-content"><img style="height:100px;" src="{{ asset('/uploads/files/') }}{{row.photo}}" /></span></td>
+				<td><span class="bt-content">{{row.position.name}}</span></td>
+				<td><span class="bt-content">{{row.firstDay  | date('d-m-Y')}}</span></td>
+				<td><span class="bt-content">{{row.rate}}</span></td>
+				<td><span class="bt-content"><a href="{{ path('adminSkip', {'idEmployee':row.id}) }}">Добавить пропуски</a></span></td>
+				<td><span class="bt-content"><a href="{{ path('editEmployee', {'idEmployee':row.id}) }}">Редактировать</a></span></td>
+				<td><span class="bt-content"><a href="{{ path('getSalary', {'idEmployee':row.id}) }}">Посчитать зарплату</a></span></td>
+			</tr>	
+		{% endfor %}			  
+		</tbody>
+	</table>
+
+	{{ knp_pagination_render(pagination) }}
+{% endblock %}

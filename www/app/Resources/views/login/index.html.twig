@@ -1,0 +1,12 @@
+{% extends 'forms/default.html.twig' %}
+{% block title %}Вход{% endblock %}
+{% block titleForm %}Вход{% endblock %}
+{% block errorMessage %}Неверный логин или пароль.{% endblock %}
+{% block form %}
+  {{ form_start(form) }}
+  {{ form_widget(form) }}
+  {{ form_end(form) }} 
+{% endblock %}
+{% block links%}
+  <a href="{{ path('registration') }}">У меня нет аккаунта</a><br/>
+{% endblock %}

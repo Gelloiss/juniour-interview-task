@@ -1,0 +1,15 @@
+{% extends 'admin/adminTemplate.html.twig' %}
+{% block page %}
+	{{ form_start(form) }}
+	{{ form_widget(form) }}
+	{{ form_end(form) }}
+
+	<br/><br/>
+	<p>Существующие должности:</p>
+	{% if positions is empty %}
+		<p>Вы еще не добавили должности!</p>
+	{% endif %}
+	{% for position in positions %}
+		<p class="positionElement">{{ position.name }} <a href="{{ path('adminPositionsDel', { 'objid': position.id }) }}">Удалить</a></p> 
+	{% endfor %}
+{% endblock %}

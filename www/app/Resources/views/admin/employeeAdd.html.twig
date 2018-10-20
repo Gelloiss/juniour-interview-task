@@ -1,0 +1,31 @@
+{% extends 'admin/adminTemplate.html.twig' %}
+{% block page %}
+
+	{% if errorRate == true %}
+    	<p>Неверно указан рейт</p>
+	{% endif %}
+
+	{{ form_start(form) }}
+	{{ form_widget(form) }}
+	{{ form_row(form.photo) }}
+	<div class="monthly" id="mycalendar"></div>
+	{{ form_end(form) }}
+
+	{% if adding == true %}
+    	<p>Сотрудник успешно добавлен!</p>
+	{% endif %}
+	<script type="text/javascript" src="{{ asset('js/monthly.js') }}"></script>
+	<script type="text/javascript">
+		$(window).load( function() {
+			$('#mycalendar').monthly({
+				mode: 'picker',
+				target: '.calendar',
+				setWidth: '250px',
+				startHidden: true,
+				showTrigger: '.calendar',
+				stylePast: false,
+				disablePast: false,
+			});
+		});
+	</script>
+{% endblock %}

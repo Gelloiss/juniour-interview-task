@@ -1,0 +1,30 @@
+{% extends 'admin/adminTemplate.html.twig' %}
+{% block page %}
+	<p class="positionElement"><b>{{employee.name}}</b></p>
+	<p class="positionElement"><img src="{{ asset('/uploads/files/') }}{{employee.photo}}" /></p>
+	<p class="positionElement">Должность: {{employee.position.name}}</p>
+	<p class="positionElement">Первый рабочий день: {{employee.firstDay  | date('d-m-Y')}}</p>
+	<p class="positionElement">Оплата в час: {{employee.rate}}</p>
+
+	{{ form_start(form) }}
+    {{ form_widget(form) }}
+	{{ form_end(form) }}
+
+	{#Посчитать за:<br/>
+	<a href="{{ path('getPrice', {'idEmployee':employeeId}) }}/1">Январь</a><br/>
+	<a href="{{ path('getPrice', {'idEmployee':employeeId}) }}/2">Февраль</a><br/>
+	<a href="{{ path('getPrice', {'idEmployee':employeeId}) }}/3">Март</a><br/>
+	<a href="{{ path('getPrice', {'idEmployee':employeeId}) }}/4">Апрель</a><br/>
+	<a href="{{ path('getPrice', {'idEmployee':employeeId}) }}/5">Май</a><br/>
+	<a href="{{ path('getPrice', {'idEmployee':employeeId}) }}/6">Июнь</a><br/>
+	<a href="{{ path('getPrice', {'idEmployee':employeeId}) }}/7">Июль</a><br/>
+	<a href="{{ path('getPrice', {'idEmployee':employeeId}) }}/8">Август</a><br/>
+	<a href="{{ path('getPrice', {'idEmployee':employeeId}) }}/9">Сентябрь</a><br/>
+	<a href="{{ path('getPrice', {'idEmployee':employeeId}) }}/10">Октябрь</a><br/>
+	<a href="{{ path('getPrice', {'idEmployee':employeeId}) }}/11">Ноябрь</a><br/>
+	<a href="{{ path('getPrice', {'idEmployee':employeeId}) }}/12">Декабрь</a><br/>#}
+
+	<p class="positionElement">Oплата за месяц: {{totalRate}}</p>
+	<p class="positionsElement">{% if errorMonth == true %}<p>Месяц еще не закончиля!</p>{% endif %}</p> 
+	<p class="positionsElement">{% if errorYear == true %}<p>Сотрудник еще не работал!</p>{% endif %}</p> 
+{% endblock %}

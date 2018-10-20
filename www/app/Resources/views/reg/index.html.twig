@@ -1,0 +1,12 @@
+{% extends 'forms/default.html.twig' %}
+{% block title %}Регистрация{% endblock %}
+{% block titleForm %}Регистрация{% endblock %}
+{% block errorMessage %}Еmail или логин уже используются.{% endblock %}
+{% block form %}
+  {{ form_start(form) }}
+  {{ form_widget(form) }}
+  {{ form_end(form) }} 
+{% endblock %}
+{% block links%}
+  <a href="{{ path('login') }}">У меня уже есть аккаунт</a><br/>
+{% endblock %}
